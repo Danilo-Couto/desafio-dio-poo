@@ -1,6 +1,4 @@
-import br.com.dio.desafio.dominio.Conteudo;
-import br.com.dio.desafio.dominio.Curso;
-import br.com.dio.desafio.dominio.Mentoria;
+import br.com.dio.desafio.dominio.*;
 
 import java.time.LocalDate;
 
@@ -8,7 +6,6 @@ public class Main {
     public static void main(String[] args) {
         Curso curso = new Curso();
         Mentoria mentoria = new Mentoria();
-        Conteudo curso2 = new Curso(); //polimorfismo
 
         curso.setTitulo("curso de Java");
         curso.setDescricao("Bootcamp Curso DIO");
@@ -18,10 +15,33 @@ public class Main {
         mentoria.setDescricao("Bootcamp mentoria DIO");
         mentoria.setData(LocalDate.now());
 
-        System.out.println(curso);
-        System.out.println(mentoria);
-        System.out.println(curso2);
+        Bootcamp dio = new Bootcamp();
+        dio.setNome("Bootcamp Dio");
+        dio.setDescrica("Bootcamp de Java");
+        dio.getConteudos().add(curso);
+        dio.getConteudos().add(mentoria);
 
+        Dev devDanilo = new Dev();
+        Dev devMurilo = new Dev();
+
+        devDanilo.setNome("Danilo");
+        devDanilo.setNome("Murilo");
+
+        devDanilo.inscreverBootcamp(dio);
+        devMurilo.inscreverBootcamp(dio);
+
+        devDanilo.progredir();
+//        devMurilo.progredir();
+
+        devDanilo.calcularTotalXp();
+        devMurilo.calcularTotalXp();
+
+        System.out.println(devDanilo.getConteudosConcluidos());
+        System.out.println(devMurilo.getConteudosConcluidos());
+        System.out.println(devDanilo.getConteudosInscritos());
+        System.out.println(devMurilo.getConteudosInscritos());
+        System.out.println(devDanilo.calcularTotalXp());
+        System.out.println(devMurilo.calcularTotalXp());
     }
 
 }
